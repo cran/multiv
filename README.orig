@@ -1,0 +1,170 @@
+Multivariate Data Analysis Routines in S-Plus
+
+F. Murtagh (fmurtagh@eso.org), August 1994
+-------------------------------------------------------------------------------
+
+1. Principal components analysis
+
+   Files: pca.f        [Fortran program which does most of the work.]
+          pca.q        [S-Plus driver, which uses pca.f]
+          pca.d        [Help file.]
+          plaxes.q     [Utility to plot axes in planar plots.]
+
+   Usage: f77 -c pca.f             [To create object code.]
+          dyn.load("pca.o")        [In S-Plus to dynamically load.]
+          source("pca.q")          [To operationalize routine pca.]
+          help(pca)                [... having first placed pca.d in 
+                                   directory .Data/.Help, calling it: pca
+         
+   Remarks: see help file for differences with respect to prcomp; for 
+          examples of use; and for use of routine plaxes.
+
+2. Hierarchical cluster analysis
+
+   Files: hierclust.q        [Overall driving routine.]
+          hierclust.d        [Help file for routine hierclust.]
+          hc.q               [Called by routine hierclust.]
+          hc.f               [Called in turn from hc.q]
+          hcmovie.f          [Called by routine hierclust.]
+          members.q          [Determine cluster assignments from hierarchy.]
+          members.f          [Called from members.q]
+          members.d          [Help file for routine members.]
+          pca.f              [PCA is needed by movie option.]
+          pca.q              [PCA is needed by movie option.]
+
+   Usage: 
+          Before starting up S+:
+          f77 -c hc.f
+          f77 -c hcmovie.f
+          f77 -c members.f
+          f77 -c pca.f       [If not done already; PCA is used by movie option]
+
+          In S+:
+          dyn.load("hc.o")
+          dyn.load("hcmovie.o")
+          dyn.load("members.o")
+          dyn.load("pca.o")  [For movie option.]
+          source("hierclust.q")
+          source("hc.q")
+          source("members.q")
+          source("pca.q")
+
+          Now...(examples, using the "prim4" dataset available in S+):
+          res <- hierclust(prim4)
+          motif()
+          plclust(res)
+          res2 <- hierclust(prim4[1:100,], movie=T)
+          res3 <- hierclust(prim4, bign=T)
+
+   Remarks: All widely-used criteria are implemented.  A nearest-neighbor 
+          chain algorithm is used with a Lance-Williams implementation as 
+          the default.  Alternatively, there is a version ("bign = T") which 
+          caters for a large number of rows, by working on the array only 
+          and producing dissimilarities on the fly.  The S-Plus routine 
+          'hclust' is incorporated.  The Murtagh/Raftery linearizing approach 
+          (cf. also 'mclust' on Statlib) is available, where the user 
+          specifies a desired degree of cluster ellipticity.  A "movie" or 
+          "see it as it happens" version is particularly useful for small 
+          numbers of rows, e.g. around 100.  The agglomerations are 
+          dynamically shown in a plot defined by the first two principal 
+          components.  
+
+3. Bond Energy Algorithm (BEA)
+
+   Files: bea.q              [Overall driving routine.]
+          bea.d              [Help file.]
+          bea.f              [Called from bea.q]
+
+   Usage: 
+          Before starting up S+:
+          f77 -c bea.f
+
+          In S+:
+          dyn.load("bea.o")
+          source("bea.q")
+
+   Remarks: BEA algorithm for row/column array reordering, from McCormick,
+          Schweitzer and White, 1972.
+
+4. Sammon mapping
+
+   Files: sammon.q           [Overall driving routine.]
+          sammon.d           [Help file.]
+          sammon.f           [Called from sammon.q]
+
+   Usage: 
+          Before starting up S+:
+          f77 -c sammon.f
+
+          In S+:
+          dyn.load("sammon.o")
+          source("sammon.q")
+
+   Remarks: non-linear dimenisonality-reduction method (multidimensional
+          scaling) due to Sammon, 1969.
+
+5. Partitioning
+
+   Files: partition.q       [Overall driving routine.]
+          partition.d       [Help file.]
+          partition.f       [Called from parition.q]
+
+   Usage: 
+          Before starting up S+:
+          f77 -c partition.f
+
+          In S+:
+          dyn.load("partition.o")
+          source("partition.q")
+
+   Remarks: partitioning, using either Hartigan-Wong algorithm which assumes
+          initial guesses of the cluster centers on starting, and which is 
+          the current S-Plus routine kmeans; or the Spaeth algorithm which 
+          requires the desired number of clusters.  
+
+6. Correspondence Analysis
+
+   Files: ca.q             [Overall driving routine.]
+          ca.d             [Help file.]
+          ca.f             [Called from ca.q]
+          ca.supplc.q      [Supplementary columns.]
+          ca.supplc.d      [Help file.]
+          ca.supplr.q      [Supplementary rows.]
+          ca.supplr.d      [Help file.]
+          flou.q           [Fuzzy coding.]
+          flou.d           [Help file.]
+          logique.q        [Logical coding.]
+          logique.d        [Help file.]
+          plaxes.q         [Tool for plotting axes.]
+
+   Usage: 
+          Before starting up S+:
+          f77 -c ca.f
+
+          In S+:
+          dyn.load("ca.o")
+          source("ca.q")
+          source("ca.supplc.q")
+          source("ca.supplr.q")
+          source("flou.q")
+          source("logique.q")
+          source("plaxes.q")
+
+   Remarks: the projecting of supplementary rows and columns is supported.
+          The fuzzy and logical coding functions may be used as templates
+          for other such coding approaches.
+
+-------------------------------------------------------------------------------
+Notes: These routines have been used on a Sun Unix platform with S-Plus v. 3.1.
+This software can be freely used and freely distributed for non-commercial
+purposes.                                      Fionn Murtagh (fmurtagh@eso.org)
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
