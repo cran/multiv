@@ -9,24 +9,25 @@ such that the an error criterion between distances in the given space,
 and distances in the result space, is minimized.
 }
 \usage{
-sammon(a, p=2, maxit=100, tol=0.05, alpha=0.3, diagnostics=F)
+sammon(a, p=2, maxit=100, tol=0.05, alpha=0.3, diagnostics=FALSE)
 }
 \arguments{
-\item{a}{
-input matrix, coordinate data. No missing values.
-}
-\item{p}{
-dimensionality of output space.
-}
-\item{tol}{
-tolerance on error criterion.
-}
-\item{alpha}{
-step size for gradient descent optimization.
-}
-\item{diagnostics}{
-whether or not error value is output at each step of the iterative 
-optimization.
+  \item{a}{
+    input matrix, coordinate data. No missing values.
+  }
+  \item{p}{
+    dimensionality of output space.
+  }
+  \item{maxit}{maximum number of iterations}
+  \item{tol}{
+    tolerance on error criterion.
+  }
+  \item{alpha}{
+    step size for gradient descent optimization.
+  }
+  \item{diagnostics}{
+    whether or not error value is output at each step of the iterative 
+    optimization.
 }}
 \value{
 projections in the new space.

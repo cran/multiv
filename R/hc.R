@@ -1,4 +1,4 @@
-hc <- function(a, method=1, bign=F)
+hc <- function(a, method=1, bign=FALSE)
 {
 
 # Hierarchical clustering, on raw input data; we will use Euclidean distance.

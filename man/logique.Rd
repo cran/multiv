@@ -4,7 +4,7 @@
 Logical Coding
 }
 \usage{
-logique(a)
+logique(x)
 }
 \description{
   Simple logical coding of a vector: each value in the 
@@ -12,7 +12,7 @@ vector is replaced by a 1 (if it is above or equal to the median),
 by a 0 (if it is below the median).
 }
 \arguments{
-\item{a}{
+\item{x}{
 real-valued vector, with no missing values.
 }}
 \value{

@@ -1,4 +1,4 @@
-sammon <- function(a, p=2, maxit=100, tol=0.05, alpha=0.3, diagnostics=F)
+sammon <- function(a, p=2, maxit=100, tol=0.05, alpha=0.3, diagnostics=FALSE)
 {
 
 # Sammon (non-metric multidimensional scaling) mapping.  

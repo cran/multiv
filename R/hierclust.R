@@ -375,7 +375,7 @@ hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
 #              In the case of "gauss", remove circles:
                if (length(classx) > 1 && repres=="gauss") {
                   symbols(mean(classx),mean(classy),
-                  circles=sigma,add=T,inches=F,col=0)    }    }
+                  circles=sigma,add=TRUE,inches=FALSE,col=0)    }    }
        classvect <- iklass[n-ncl,]
        classx    <- xvalues[classvect==1]
        classy    <- yvalues[classvect==1]
@@ -405,7 +405,7 @@ hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
 #          Use var in population terms - looks better for small 'classn':
            sigma <- sqrt(var(classx)*(classn-1)/classn+
                          var(classy)*(classn-1)/classn)
-           symbols(mean(classx),mean(classy),circles=sigma,add=T,inches=F)  }
+           symbols(mean(classx),mean(classy),circles=sigma,add=TRUE,inches=FALSE)  }
         if (m==2 && repres=="lines")  {
            z<-lsfit(classx,classy)
            xmin   <- min(classx)

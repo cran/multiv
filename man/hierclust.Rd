@@ -2,59 +2,49 @@
 \alias{hierclust}
 \alias{hc}
 \title{
-Hierarchical Clustering
+  Hierarchical Clustering
 }
 \usage{
 hierclust(a, method = 1, bign = FALSE, diagnostics = FALSE, sim = " ",
              movie = FALSE, option = "thru", alpha = 1.0, repres = "chull", 
              show = "change")
-
-hierclust(dst, method="compact", sim=)
-
-
 }
 \description{
   Agglomerates the closest pair of observations, and replaces them with
-a cluster.  Agglomerates the next closest pair of observations or clusters.
-Continues through `n-1' agglomerations, assuming there are `n' observations.
+  a cluster.  Agglomerates the next closest pair of observations or clusters.
+  Continues through `n-1' agglomerations, assuming there are `n' observations.
 }
 \arguments{
-\item{a}{
-data matrix to be analyzed, the rows representing observations and the
-columns variables; or, alternatively, lower-diagonal dissimilarity matrix in
-vector or list format.  In latter case, the number of values is \code{n(n-1)/2} 
-where \code{n} is the number of observations.
-
-
-(See below for second variant of usage of this function.)
-
-
-First variant:
-
-
-}
-\item{method}{
-First possibility: integer taking the value between 1 and 7.  These methods 
-correspond to:
-Ward's minimum variance or error sum of squares method (1); single linkage
-or nearest neighbor method (2); complete linkage or diameter (3); average
-linkage, group average, or UPGMA method (4); McQuitty's or WPGMA method
-(5); median, Gower's or WPGMC method (6); and centroid or UPGMC method (7).
-If the \code{movie} option is used, only \code{method}s 1 to 4 are supported.
-Second possibility: string \code{compact} (default; complete linkage), 
-\code{average} (average linkage), or \code{connected} (single linkage).
-}
-\item{sim}{
-structure giving similarities rather than dissimilarities.  This can either
-be a symmetric matrix or a vector with a \code{Size} attribute.  Only one of 
-dissimilarities or similarities may be specified (or, of course, as an
-alternative, a data matrix.
-}
-\item{bign}{
-Is \code{n} big?  If storage is problemsome, a different implementation of the 
-Ward criterion may be tried.  This determines dissimilarities on the fly, and
-hence requires \code{O(n)} storage.
-}
+  \item{a}{
+    data matrix to be analyzed, the rows representing observations and the
+    columns variables; or, alternatively, lower-diagonal dissimilarity
+    matrix in vector or list format.  In latter case, the number of values is
+    \code{n(n-1)/2} where \code{n} is the number of observations.
+  }
+  \item{method}{
+    First possibility: integer taking the value between 1 and 7.  These
+    methods correspond to: 
+    Ward's minimum variance or error sum of squares method (1); single linkage
+    or nearest neighbor method (2); complete linkage or diameter (3); average
+    linkage, group average, or UPGMA method (4); McQuitty's or WPGMA method
+    (5); median, Gower's or WPGMC method (6); and centroid or UPGMC method (7).
+    If the \code{movie} option is used, only \code{method}s 1 to 4 are
+    supported.
+    
+    Second possibility: string \code{compact} (default; complete linkage), 
+    \code{average} (average linkage), or \code{connected} (single linkage).}
+  \item{sim}{
+    structure giving similarities rather than dissimilarities.  This can either
+    be a symmetric matrix or a vector with a \code{Size} attribute.
+    Only one of dissimilarities or similarities may be specified (or, of
+    course, as an alternative, a data matrix.
+  }
+  \item{bign}{
+    Is \code{n} big?  If storage is problemsome, a different
+    implementation of the  Ward criterion may be tried.  This determines
+    dissimilarities on the fly, and 
+    hence requires \code{O(n)} storage.
+  }
 \item{diagnostics}{
 show, or suppress, some information directed to the command window. 
 Suppression is useful if functional programming capabilities are availed of,
@@ -103,33 +93,6 @@ In this method's present implementation, the clusters at each stage are
 this highlighting changed at each agglomeration, so that only the most recent
 agglomerands are shown.  Option show = "all" does not turn off the
 highlighting in this way.
-
-
-Second variant (which re-wraps S function \code{hclust}: cf. help file on \code{hclust}):
-
-
-
-
-Exactly one of dst or sim must be specified.
-
-
-}
-\item{dst}{
-a distance structure or distance matrix.  Normally this
-will be the result of the function \code{dist}, but it can be any
-data of the form returned by \code{dist}, or  a  full,  symmetric
-matrix.  Missing values are not allowed.
-}
-\item{method}{
-character string giving  the  clustering  method.   The
-three  methods  currently implemented are "average", "con-
-nected" (single linkage) and "compact" (complete linkage).
-(The first three characters of the method are sufficient.)
-}
-\item{sim=}{
-structure giving similarities  rather  than  distances.
-This  can  either be a symmetric matrix or a vector with a
-"Size" attribute.  Missing values are not allowed.
 }}
 \value{
 When \code{movie} is not specified in the first variant, this is a 

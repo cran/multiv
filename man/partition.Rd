@@ -4,9 +4,7 @@
 Partitioning by Iterative Optimization
 }
 \usage{
-partition(a, ng, iter.max = 15, option = "mindst", diagnostics = FALSE)
-
-partition(a, centers, iter.max = 15, diagnostics = FALSE)
+partition(a, g, iter.max = 15, option = "mindst", diagnostics = FALSE)
 }
 \description{
   Returns cluster memberships.  In the case of a data matrix, the user 
@@ -20,7 +18,7 @@ matrix of multivariate data.
 Each row corresponds to an observation, and each column corresponds to 
 a variable.  
 }
-\item{ng}{
+\item{g}{
 Number of groups or clusters.
 }
 \item{centers}{

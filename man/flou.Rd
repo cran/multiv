@@ -11,10 +11,10 @@ Fuzzy Coding (3-Way)
   quantiles).  
 }
 \usage{
-flou(a)
+flou(x)
 }
 \arguments{
-\item{a}{
+\item{x}{
 real-valued vector, with no missing values.
 }}
 \value{
