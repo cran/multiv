@@ -1,7 +1,5 @@
 bea                      Bond Energy Algorithm
 ca                       Correspondence Analysis
-supplc                   Supplementary Columns in Correspondence Analysis
-supplr                   Supplementary Rows in Correspondence Analysis
 flou                     Fuzzy Coding (3-Way)
 hierclust                Hierarchical Clustering
 logique                  Logical Coding
@@ -9,3 +7,5 @@ members                  Cluster Memberships
 partition                Partitioning by Iterative Optimization
 pca                      Principal Components Analysis
 sammon                   Sammon's Non-Linear Mapping
+supplc                   Supplementary Columns in Correspondence Analysis
+supplr                   Supplementary Rows in Correspondence Analysis

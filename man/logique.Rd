@@ -20,7 +20,7 @@ matrix of \code{length(a)} rows, and two columns.  The first column contains the
 logically coded values of \code{a}, and the second column contains their 
 complements.  Hence each row of this returned matrix necessarily sums to 1.
 }
-\section{BACKGROUND}{
+\section{Background}{
 This form of coding is suitable for a subsequent correspondence analysis.
 When all variable have been logically (or fuzzily) coded, the row masses 
 (proportional to the row sums) are identical.  Logical coding results in
@@ -35,11 +35,14 @@ Marcel Dekker, Basel, 1992.
 \code{\link{flou}}, \code{\link{ca}}, \code{\link{supplr}}, \code{\link{supplc}}.  
 }
 \examples{
-# Logical coding of input variables, `a', `b', `c':
-a.log <- logique(a)
-b.log <- logique(b)
-c.log <- logique(c)
-newdata <- cbind(a.log, b.log, c.log)
+data(USArrests)
+USArrests <- as.matrix(USArrests)
+# Fuzzy coding of input variables
+a.log <- logique(USArrests[,1])
+b.log <- logique(USArrests[,2])
+c.log <- logique(USArrests[,3])
+d.log <- logique(USArrests[,4])
+newdata <- cbind(a.log, b.log, c.log, d.log)
 ca.newdata <- ca(newdata)
 }
 \keyword{multivariate}

@@ -4,9 +4,9 @@
 Partitioning by Iterative Optimization
 }
 \usage{
-partition(a, ng, iter.max=15, option="mindst", diagnostics=F)
+partition(a, ng, iter.max = 15, option = "mindst", diagnostics = FALSE)
 
-partition(a, centers, iter.max=15, diagnostics=F)
+partition(a, centers, iter.max = 15, diagnostics = FALSE)
 }
 \description{
   Returns cluster memberships.  In the case of a data matrix, the user 
@@ -43,11 +43,11 @@ minimally distant from group centers.
 \item{diagnostics}{
 FALSE (default) implies that cluster cardinalities, cluster center coordinates,
 and cluster compactness values will not be output to the command window.  
-}
-\item{}{
+}}
+\value{
 in the case of the Hartigan algorithm (where initial cluster centers 
 are provided) a list with the following components:
-}
+
 \item{cluster}{
 vector of integers, ranging from \code{1} to \code{ng} (or number of rows in 
 \code{centers}), with length the same as the number of rows of \code{a}.  
@@ -69,7 +69,7 @@ The \code{i}th value gives the number of observations in group \code{i}.
 In the case of the Spaeth algorithm (where the number of clusters is given),
 the first of these, only, is returned.  
 }}
-\section{METHOD}{
+\section{Method}{
 Consider first the clustering of coordinate data.
 The object is to find a partition of the observations with \code{ng} (or the 
 number of rows in \code{centers}) groups that
@@ -110,7 +110,7 @@ the following rough rule of thumb.  If \code{k} is the result of \code{partition
 justifiable to add the extra group when 
 
 
-(sum(k$withinss)/sum(kplus1$withinss)-1)*(nrow(a)-k+1)
+(sum(k\$withinss)/sum(kplus1\$withinss)-1)*(nrow(a)-k+1)
 
 
 is greater than 10.
@@ -132,56 +132,41 @@ Wiley, New York.
 
 
 Hartigan, J.A. and Wong, M.A. (1979).
-\code{A k-means clustering algorithm},
+A k-means clustering algorithm,
 Applied Statistics,
 vol. 28, pp. 100-108.
 }
 \seealso{
 \code{\link{kmeans}} (incorporated into this function); \code{\link{hierclust}}
-(hierarchical clustering routines, incorporating \code{\link{hclust}}); \code{\link{modclust}}
-(hierarchical clustering, incorporating \code{\link{mclust}}).  
+(hierarchical clustering routines, incorporating \code{\link{hclust}}).  
 }
 \examples{
-# Firstly, specifying the desired number of groups.
-ng <- 3
-pp <- partition(a,ng)
-# How well did the partitioning do?
-pp$ctot
+data(iris3)
+iris <- rbind(iris3[,,1], iris3[,,2], iris3[,,3])
+pp <- partition(iris,3)
 # Plot the results in the plane comprising the first two columns of `a'
-x <- a[,1]       # for convenience
-y <- a[,2]
+x <- iris[,1]       # for convenience
+y <- iris[,2]
 plot(x, y, type="n")     # set up plot scales, etc.
-points(x[pp$memgp==1], y[pp$memgp==1],pch="*")
-points(x[pp$memgp==2], y[pp$memgp==2],pch=".")
-points(x[pp$memgp==3], y[pp$memgp==3],pch="o")
+points(x[pp==1], y[pp==1],pch="*")
+points(x[pp==2], y[pp==2],pch="+")
+points(x[pp==3], y[pp==3],pch="o")
 
 
 # Secondly, specifying guesses at cluster centers.
-irismean <- t(apply(iris, c(2, 3), 'mean'))
-x <- rbind(iris[,,1], iris[,,2], iris[,,3])
-km <- partition(x, irismean)
+irismean <- t(apply(iris3, c(2, 3), 'mean'))
+library(mva)
+km <- partition(iris, irismean)
 wrong <- km$cluster!=rep(1:3, c(50, 50, 50))
-spin(x, highlight=wrong)
-plot(x[,2], x[,3], type="n")
-text(x[!wrong, 2], x[!wrong, 3], km$cluster)
+plot(iris[,2], iris[,3], type="n")
+text(iris[!wrong, 2], iris[!wrong, 3], km$cluster)
 # identify cluster membership that is correct
-points(x[wrong, 2], x[wrong, 3], pch=15)
+points(iris[wrong, 2], iris[wrong, 3], pch=15, col=2)
 # boxes for points in error
 title(main="K-Means Clustering of the Iris Data")
-
-
-# Now the hierarchy slicing case.
-# Produce a hierarchical clustering and plot it.
-clhier    <- hierclust(a)
-motif()
-plclust(clhier)
-# Derive the 4-cluster partition from this.  Update plot of dendrogram.
-clresult2 <- partition(clhier, 4, showslice=T)
 }
-\keyword{clustering}
-\keyword{partition}
+\keyword{cluster}
 \keyword{multivariate}
-\keyword{optimization}
 % Converted by Sd2Rd version 0.2-a5.
 
 

@@ -1,5 +1,5 @@
-hierclust    <- function(a, method=1, bign=F, diagnostics=F, sim=" ",
-                    movie=F, option="thru",alpha=1.0,repres="chull",
+hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
+                    movie=FALSE, option="thru",alpha=1.0,repres="chull",
                    show="change")
 {
 
@@ -225,7 +225,7 @@ hierclust    <- function(a, method=1, bign=F, diagnostics=F, sim=" ",
      }
 #
 #  Set up plot
-   plot(xvalues, yvalues, type="n", add=F,xlab=xlabel,ylab=ylabel,main=titl)
+   plot(xvalues, yvalues, type="n", xlab=xlabel,ylab=ylabel,main=titl)
    points(xvalues, yvalues, type="p")
 #
 #  init: Initialize

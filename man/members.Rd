@@ -13,7 +13,7 @@ objects, at all levels of the hierarchy.
 }
 \arguments{
 \item{a}{
-output produced by functions \code{hierclust} (or 'hclust' or \code{mclust}).
+output produced by functions \code{hierclust} (or \code{hclust} or \code{mclust}).
 }}
 \value{
 matrix of dimensions \code{n} by \code{n-2} giving cluster assignments to the 2, 3, \dots{}
@@ -25,19 +25,21 @@ agglomerative process.  The two clusters which merge in going from level
 \code{j-1} to \code{j-2} are replaced in the \code{j-2}nd column with the lower of the
 two cluster sequence numbers.  
 }
-\section{NOTE}{
+\section{Note}{
 
 
 The time requirement of 'members' is \code{O(n^3)}.  Sample time for Sun 
 SPARCstation 1, with 600 observations: 303 secs.
 }
 \seealso{
-Functions \code{\link{hierclust}}, \code{\link{hclust}}, or \code{\link{mclust}} produce the 
+Functions \code{\link{hierclust}}, \code{\link{hclust}} produce the 
 array containing the 
 sequence of agglomerations which can be used as input for \code{\link{members}}.
 }
 \examples{
-h <- hierclust(a, method=2)
+data(iris)
+iris <- as.matrix(iris[,1:4])
+h <- hierclust(iris, method=2)
 k <- members(h)
 }
 \keyword{cluster}

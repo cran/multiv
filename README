@@ -1,22 +1,19 @@
 This is a port of the statlib S-package multiv to R. The only changes
 that were made is that all single precision in the fortran code (and
 corresponding S code) has been changed to double precision. The man
-pages have been converted automatically by Sd2Rd and were not checked
-(yet).
+pages have been converted automatically by Sd2Rd and the examples
+have been changed to work with data contained in R.
 
 This port has not been tested too much (besides trying some of the
 examples).
 
 
-
 -------------------------------------------------------------------
-                        Friedrich  Leisch                             
-Institut für Statistik                      Tel: (+43 1) 58801 4546
-Technische Universität Wien                 Fax: (+43 1)  504 14 98
+                        Friedrich  Leisch 
+Institut für Statistik                     Tel: (+43 1) 58801 10715
+Technische Universität Wien                Fax: (+43 1) 58801 10798
 Wiedner Hauptstraße 8-10/1071      Friedrich.Leisch@ci.tuwien.ac.at
 A-1040 Wien, Austria             http://www.ci.tuwien.ac.at/~leisch
-     PGP public key http://www.ci.tuwien.ac.at/~leisch/pgp.key
 -------------------------------------------------------------------
-
 
 

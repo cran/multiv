@@ -80,8 +80,11 @@ pca <- function(a, method=3)
       ret <- list(rproj = rproj,
                 cproj = cproj,
                 evals = evals,
-                evecs = evecs,
-                rlbls = rlbls)                      
-
+                evecs = evecs)
+#
+# In the previous version rlbs was returned as well
+# although always being set to NULL
+#                rlbls = rlbls                      
+#
       ret
    }

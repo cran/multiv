@@ -67,7 +67,7 @@ hc <- function(a, method=1, bign=F)
           ia = integer(n),
           ib = integer(n),
           crit = double(n),
-          membr = integer(n),
+          membr = double(n),
           nn = integer(n),
           disnn = double(n),
           flag = logical(n),

@@ -1,12 +1,13 @@
 \name{hierclust}
 \alias{hierclust}
+\alias{hc}
 \title{
 Hierarchical Clustering
 }
 \usage{
-hierclust(a, method=1, bign = F, diagnostics=F, sim=" ",
-             movie=F, option="thru", alpha=1.0, repres="chull", 
-             show="change")
+hierclust(a, method = 1, bign = FALSE, diagnostics = FALSE, sim = " ",
+             movie = FALSE, option = "thru", alpha = 1.0, repres = "chull", 
+             show = "change")
 
 hierclust(dst, method="compact", sim=)
 
@@ -63,7 +64,7 @@ with consequent repetition of diagnostic information.
 \item{movie}{
 whether interactive display of construction of hierarchy is wanted.  This
 necessitates an open plot window.  It does not produce an output object.  
-All remaining arguments apply only in the case of the \code{movie=T}.
+All remaining arguments apply only in the case of the \code{movie=TRUE}.
 }
 \item{option}{
 (Only for \code{movie}.) "thru" (default) or "prompt": Go right through all n-1 
@@ -170,13 +171,13 @@ merge of the right subtree).  Observations are the tightest clusters possible,
 and merges involving two observations place them in order by their 
 observation sequence number.
 }}
-\section{NOTE}{
+\section{Note}{
 The squared Euclidean distance is used in the \code{movie} case, and in the case
 when a data matrix is input. Note that the \code{movie} option returns 
 invisibly.   
 }
-\section{METHOD}{
-In the case of all methods when \code{bign = F} (default), 
+\section{Method}{
+In the case of all methods when \code{bign = FALSE} (default), 
 the Lance-Williams dissimilarity update formula is used to allow the 7 methods
 to be implemented.   
 
@@ -190,7 +191,7 @@ Hence \code{O(n)} operations are required for each of \code{n-1} iterations, i.e
 initial setting up of the \code{n} nearest neighbors also requires \code{O(n^2)} time.
 The processing to be carried out following each agglomeration is \code{O(n)}.
 In total, all methods implemented in \code{hc} are of time complexity \code{O(n^2)}.
-Unless \code{bign = T} (see below), storage 
+Unless \code{bign = TRUE} (see below), storage 
 complexity is \code{O(n^2)}.  Typical times on a Sun SPARCstation
 1 for 400x4 and 800x4 arrays: 12 and 48 secs.
 
@@ -204,11 +205,11 @@ for clusters with characteristics somewhere between the single and complete
 link methods. 
 
 
-In the case of the Ward method, and \code{bign = T}, the nearest-neighbor 
+In the case of the Ward method, and \code{bign = TRUE}, the nearest-neighbor 
 chain algorithm is used, which gives an \code{O(n^2)}
 computation time algorithm. The input matrix is stored, but not the
 dissimilarities produced.  Computation time is marginally inferior to the
-implementation of Ward's method when \code{bign = F} (default).  Sample 
+implementation of Ward's method when \code{bign = FALSE} (default).  Sample 
 times for a 400x4 and an 800x4
 array on a Sun SPARCstation 1: 12.5 and 50 secs.
 }
@@ -242,28 +243,18 @@ COMPSTAT Lectures 4,
 Physica-Verlag, Wuerzburg, 1985 (for algorithmic details of algorithms used).
 }
 \seealso{
-\code{\link{plclust}} for plotting a dendrogram, and \code{\link{cutree}} for cutting.  
 For finding assignments of objects to clusters, use \code{\link{members}}.
-'Dist' is used for creating (dis)similarities.  Functions \code{\link{plclust}},
-\code{\link{cutree}}, and \code{\link{dist}} are already available in S-Plus.  Function \code{\link{members}}
+'Dist' is used for creating (dis)similarities.  Functions
+\code{\link{cutree}}, and \code{\link{dist}} are already available in R.  Function \code{\link{members}}
 is available in this function suite.
 }
 \examples{
+data(iris)
+iris <- as.matrix(iris[,1:4])
 # Default Ward criterion
-h <- hierclust(a)
-plclust(h)
-# Real-time display of clustering
-hierclust(a, movie=T)
-# Single link criterion
-h <- hierclust(dist(a), method=connected)
-# Get cluster assignments corresponding to 5-cluster partition:
+hierclust(iris, movie = TRUE)
+h <- hierclust(iris)
 k <- members(h)
-k$class[,4]
-# Large `n'
-h <- hierclust(a, bign=T)
-# An example of the incorporated `hclust' function, which allows processing
-# of dissimilarity data:
-hierclust(dist(a))
 }
 \keyword{cluster}
 \keyword{multivariate}

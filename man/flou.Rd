@@ -22,7 +22,7 @@ matrix of \code{length(a)} rows, and two columns.  The first column contains the
 fuzzily coded values of \code{a}, and the second column contains their 
 complements.  Hence each row of this returned matrix necessarily sums to 1.
 }
-\section{BACKGROUND}{
+\section{Background}{
 This form of coding is suitable for a subsequent correspondence analysis.
 When all variable have been fuzzily (or logically) coded, the row masses 
 (proportional to the row sums) are identical.  
@@ -42,11 +42,14 @@ vol. VII, 413-430, 1982
 \code{\link{logique}}, \code{\link{ca}}, \code{\link{supplr}}, \code{\link{supplc}}.  
 }
 \examples{
-# Fuzzy coding of input variables, `a', `b', `c':
-a.fuzz <- flou(a)
-b.fuzz <- flou(b)
-c.fuzz <- flou(c)
-newdata <- cbind(a.fuzz, b.fuzz, c.fuzz)
+data(USArrests)
+USArrests <- as.matrix(USArrests)
+# Fuzzy coding of input variables
+a.fuzz <- flou(USArrests[,1])
+b.fuzz <- flou(USArrests[,2])
+c.fuzz <- flou(USArrests[,3])
+d.fuzz <- flou(USArrests[,4])
+newdata <- cbind(a.fuzz, b.fuzz, c.fuzz, d.fuzz)
 ca.newdata <- ca(newdata)
 }
 \keyword{multivariate}

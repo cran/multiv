@@ -35,7 +35,7 @@ projections in the new space.
 matrix of projections of the row observations, as yielded by the nonlinear
 mapping algorithm.
 }}
-\section{NOTE}{
+\section{Note}{
 It may be useful to run this routine a number of times and to keep the
 result yielding the smallest error.  This mapping error, and the number of
 iterations required for convergence, are output to the command window.
@@ -52,8 +52,9 @@ A nonlinear mapping for data structure analysis,
 IEEE Trans. Computers, C-18, 401-409, 1969.
 }
 \examples{
-# Assume the 150x4 iris data matrix is in `iris.var'.  
-mds <- sammon(iris.var, tol=0.05, maxit=200)
+data(iris)
+iris <- as.matrix(iris[,1:4])  
+mds <- sammon(iris, tol=0.05, maxit=200)
 # Now plot observations 1-50, 51-100 and 101-150 distinctively;
 # add a set of axes through x=0 and y=0.
 plot(mds$rproj[,1], mds$rproj[,2], type="n", xlab="Axis 1", ylab="Axis 2",
@@ -61,7 +62,6 @@ main="2-d Sammon mapping of iris data")
 points(mds$rproj[1:50,1], mds$rproj[1:50,2], pch="*")
 points(mds$rproj[51:100,1], mds$rproj[51:100,2], pch="+")
 points(mds$rproj[101:150,1], mds$rproj[101:150,2], pch="o")
-plaxes(mds$rproj[,1], mds$rproj[,2])
 }
 \keyword{multivariate}
 % Converted by Sd2Rd version 0.2-a5.

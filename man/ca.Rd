@@ -13,7 +13,7 @@ place of the Euclidean distance.  The issue of how to code the input data
 is important: this takes the place of input data transformation in PCA.
 }
 \usage{
-ca(a)
+ca(a, nf = 7)
 }
 \arguments{
 \item{a}{
@@ -22,7 +22,10 @@ columns variables.
 }
 \item{nf}{
 number of factors or axes to be sought; default 7.  
-}
+}}
+\value{
+a list containg the following results:
+
 \item{rproj}{
 projections of row points on the factors.
 }
@@ -34,11 +37,6 @@ eigenvalues associated with the new factors. These provide figures of merit for
 the "inertia explained" by the factors.  They are usually quoted in terms
 of percentage of the total, or in terms of cumulative percentage of the total.
 }
-\item{evecs}{
-definition of the factors in terms of the original variables. 
-The first column is the linear combination of columns of 
-\code{a} defining the first factor, etc.  
-}
 \item{rcntr}{
 contributions of observations to the factors.  The contributions are mass times
 projection (on the factor) squared.  Since contributions take account of the 
@@ -49,14 +47,14 @@ interpretation of the factor, compared to the projections alone.
 contributions of variables to the factors. See above remark concerning 
 row contributions.
 }}
-\section{NOTE}{
+\section{Note}{
 Very small negative eigenvalues, if they arise, are an artifact of the SVD
 algorithm used, and are to be treated as zero.
 }
-\section{METHOD}{
+\section{Method}{
 A singular value decomposition is carried out.  
 }
-\section{BACKGROUND}{
+\section{Background}{
 Correspondence analysis defines the axis which provides the best fit
 to both the row points and the column points.  A second axis is determined
 which best fits the data subject to being orthogonal to the first.  Third and
@@ -118,34 +116,26 @@ University of Toronto Press, Toronto, 1980.
 \seealso{
 Supplementary rows and columns: \code{\link{supplr}}, \code{\link{supplc}}.  Initial data coding:
 \code{\link{flou}}, \code{\link{logique}}.  Other related functions: \code{\link{pca}}, \code{\link{prcomp}}, \code{\link{cancor}}, 
-\code{\link{sammon}}, \code{\link{cmdscale}}.  Plotting tool: \code{\link{plaxes}}.
+\code{\link{sammon}}, \code{\link{cmdscale}}.
 }
 \examples{
-\dontrun{
-###
-### WARNING: Examples cannot be executed!!!
-###
-# correspondence analysis of the breakfast cereal data, 
-# in complete disjunctive form:
-bfpos <- t(cereal.attitude)
-bfneg <- max(bfpos) - bfpos
-bfposneg <- cbind(bfpos, bfneg)
-corr <- ca(bfposneg)
+data(USArrests)
+USArrests <- as.matrix(USArrests)
+corr <- ca(USArrests)
 # plot of first and second factors
 plot(corr$rproj[,1], corr$rproj[,2],type="n")
-text(corr$rproj[,1], corr$rproj[,2], labels=dimnames(bfposneg[[1]]))
-# Place additional axes through x=0 and y=0:
-plaxes(corr$rproj[,1], corr$rproj[,2])
+text(corr$rproj[,1], corr$rproj[,2])
 # check of row contributions
 corr$rcntr
 #
-# Fuzzy coding of input variables, `a', `b', `c':
-a.fuzz <- flou(a)
-b.fuzz <- flou(b)
-c.fuzz <- flou(c)
-newdata <- cbind(a.fuzz, b.fuzz, c.fuzz)
+# Fuzzy coding of input variables
+a.fuzz <- flou(USArrests[,1])
+b.fuzz <- flou(USArrests[,2])
+c.fuzz <- flou(USArrests[,3])
+d.fuzz <- flou(USArrests[,4])
+newdata <- cbind(a.fuzz, b.fuzz, c.fuzz, d.fuzz)
 ca.newdata <- ca(newdata)
-}}
+}
 \keyword{multivariate}
 \keyword{algebra}
 % Converted by Sd2Rd version 0.2-a5.

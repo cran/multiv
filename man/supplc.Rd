@@ -20,7 +20,7 @@ the output of a correspondence analysis.  The following components of this
 object are used: \code{evals}, \code{rproj} and \code{cproj}.
 }}
 \value{
-a matrix, 
+a list containing the matrix \code{proj}, 
 projections of the columns of \code{a} on the correspondence analysis factors.
 }
 \references{
@@ -31,17 +31,16 @@ Correspondence analysis: \code{\link{ca}}.
 Supplementary rows and columns: \code{\link{supplr}}, \code{\link{supplc}}.  Initial data coding:
 \code{\link{flou}}, \code{\link{logique}}.  Other functions producing objects of class "reddim":
 \code{\link{pca}}, \code{\link{sammon}}.  Other related functions: \code{\link{prcomp}}, \code{\link{cancor}}, \code{\link{cmdscale}}.
-Plotting tool: \code{\link{plaxes}}.
 }
 \examples{
-cares <- ca(logarray)
-newproj <- supplc(newcols, cares)
+data(USArrests)
+USArrests <- as.matrix(USArrests)
+corr <- ca(USArrests[,1:2])
+newproj <- supplc(USArrests[,3:4], corr)
 # plot of first and second factors, and of supplementary columns:
-plot(cares$cproj[,1], cares$cproj[,2],type="n")
-text(cares$cproj[,1], cares$cproj[,2])
-points(newproj[,1], newproj[,2])
-# Place additional axes through x=0 and y=0:
-plaxes(cares$cproj[,1], cares$cproj[,2])
+plot(corr$cproj[,1], corr$cproj[,2],type="n")
+text(corr$cproj[,1], corr$cproj[,2])
+points(newproj$proj[,1], newproj$proj[,2], col=2)
 }
 \keyword{multivariate}
 \keyword{algebra}
