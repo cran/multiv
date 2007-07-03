@@ -30,7 +30,8 @@ ca <- function(a, nf=7)
                rcn    = as.matrix(rcn),
                ccn    = as.matrix(ccn),
                nf     = as.integer(nf),
-               ierr   = as.integer(ierr))
+               ierr   = as.integer(ierr),
+               PACKAGE = "multiv")
     if (corresp$ierr==2) 
        stop("All vals. in a row or col. are zero; pls. remove.")
     if (corresp$ierr > 0) stop("No convergence for eigenvalue: ",ierr)

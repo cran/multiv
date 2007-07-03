@@ -57,7 +57,8 @@ partition <- function(a, g, iter.max=15, option="mindst", diagnostics=FALSE)
                               ctot = double(1),      # sum of comp values
                               iter = integer(1),     # iterns. to converge
                               iter.max = as.integer(iter.max),
-                              ierr = integer(1))     # error indicator
+                              ierr = integer(1),     # error indicator
+                                 PACKAGE = "multiv")
         else   
            partit <- .Fortran("mindst",
                               a = as.double(a),      # input data
@@ -72,7 +73,8 @@ partition <- function(a, g, iter.max=15, option="mindst", diagnostics=FALSE)
                               ctot = double(1),      # sum of comp values
                               iter = integer(1),     # iterns. to converge
                               iter.max = as.integer(iter.max),
-                              ierr = integer(1))     # error indicator
+                              ierr = integer(1),     # error indicator
+                              PACKAGE = "multiv")
            if (partit$ierr==1) stop("Invalid group number.")
 #          Above error due to an object's group assignment being <1 or >ng,
 #          in routine gmeans, called from mindst or from exch, which are the 

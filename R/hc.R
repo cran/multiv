@@ -35,17 +35,18 @@ hc <- function(a, method=1, bign=FALSE)
 
  istat <- 0
  hcl   <- .Fortran("hcon2",
-          n = as.integer(n),
-          m = as.integer(m),
-          a = as.matrix(a),
-          ia = integer(n),
-          ib = integer(n),
-          crit = double(n),
-          membr = double(n),
-          diss = double(n),
-          ichain = integer(n),
-          flag = logical(n),
-          istat = as.integer(istat))
+                   n = as.integer(n),
+                   m = as.integer(m),
+                   a = as.matrix(a),
+                   ia = integer(n),
+                   ib = integer(n),
+                   crit = double(n),
+                   membr = double(n),
+                   diss = double(n),
+                   ichain = integer(n),
+                   flag = logical(n),
+                   istat = as.integer(istat),
+                   PACKAGE = "multiv")
 
  if (hcl$istat!=0) stop("Pb. with NN-chain storage mgt. in routine hcon2\n")
  }
@@ -59,19 +60,20 @@ hc <- function(a, method=1, bign=FALSE)
  len <- n*(n-1)/2
 
  hcl <- .Fortran("hc",
-          n = as.integer(n),
-          m = as.integer(m),
-          len = as.integer(len),
-          method = as.integer(method),
-          a = as.matrix(a),
-          ia = integer(n),
-          ib = integer(n),
-          crit = double(n),
-          membr = double(n),
-          nn = integer(n),
-          disnn = double(n),
-          flag = logical(n),
-          diss = double(len))
+                 n = as.integer(n),
+                 m = as.integer(m),
+                 len = as.integer(len),
+                 method = as.integer(method),
+                 a = as.matrix(a),
+                 ia = integer(n),
+                 ib = integer(n),
+                 crit = double(n),
+                 membr = double(n),
+                 nn = integer(n),
+                 disnn = double(n),
+                 flag = logical(n),
+                 diss = double(len),
+                 PACKAGE = "multiv")
  }
 
 
@@ -81,12 +83,13 @@ hc <- function(a, method=1, bign=FALSE)
 
 
  hcass <- .Fortran("hcass2",
-          n = as.integer(n),
-          ia = as.integer(hcl$ia),
-          ib = as.integer(hcl$ib),
-          order = integer(n),
-          iia = integer(n),
-          iib = integer(n))
+                   n = as.integer(n),
+                   ia = as.integer(hcl$ia),
+                   ib = as.integer(hcl$ib),
+                   order = integer(n),
+                   iia = integer(n),
+                   iib = integer(n),
+                   PACKAGE = "multiv")
  merge <- cbind(hcass$iia[1:n-1],hcass$iib[1:n-1])
 
 

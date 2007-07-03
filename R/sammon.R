@@ -22,20 +22,21 @@ sammon <- function(a, p=2, maxit=100, tol=0.05, alpha=0.3, diagnostics=FALSE)
    }
 
    redmap <- .Fortran("sammon",
-             n     = as.integer(n),
-             m     = as.integer(m),
-             p     = as.integer(p),
-             a     = as.matrix(a),
-             b     = as.matrix(b),
-             ndis  = as.integer(ndis),
-             dstar = as.double(dstar),
-             dd    = as.double(dd),
-             alpha = as.double(alpha),
-             maxit = as.integer(maxit),
-             diag  = as.integer(diag),
-             iter  = as.integer(iter),
-             tol   = as.double(tol),
-             err   = as.double(err))
+                      n     = as.integer(n),
+                      m     = as.integer(m),
+                      p     = as.integer(p),
+                      a     = as.matrix(a),
+                      b     = as.matrix(b),
+                      ndis  = as.integer(ndis),
+                      dstar = as.double(dstar),
+                      dd    = as.double(dd),
+                      alpha = as.double(alpha),
+                      maxit = as.integer(maxit),
+                      diag  = as.integer(diag),
+                      iter  = as.integer(iter),
+                      tol   = as.double(tol),
+                      err   = as.double(err),
+                      PACKAGE = "multiv")
 
    cat("Number of iterations: ",redmap$iter,"\n")
    cat("Mapping error:        ",redmap$err,"\n")

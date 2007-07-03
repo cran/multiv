@@ -1,6 +1,6 @@
 Package: multiv
-Version: 1.1-3
-Date: 2001-12-06
+Version: 1.1-4
+Date: 2007-07-03
 Title: Multivariate Data Analysis Routines
 Author: S original by F. Murtagh <fmurtagh@eso.org>.
  R port by Kurt Hornik, Friedrich Leisch and Achim Zeileis

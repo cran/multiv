@@ -18,14 +18,15 @@ members <- function(a)
   ib <- a[,2]
 #
 assn <- .Fortran("assgn",
-          n = as.integer(n),
-          nplus1 = as.integer(nplus1),
-          ia = ia,
-          ib = ib,
-          iclass = iclass,
-          hvals = integer(n),
-          iia = integer(n),
-          iib = integer(n))
+                 n = as.integer(n),
+                 nplus1 = as.integer(nplus1),
+                 ia = ia,
+                 ib = ib,
+                 iclass = iclass,
+                 hvals = integer(n),
+                 iia = integer(n),
+                 iib = integer(n),
+                 PACKAGE = "multiv")
 #
   nmin1 <- n-1
 

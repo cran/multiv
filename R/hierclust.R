@@ -230,12 +230,12 @@ hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
 #
 #  init: Initialize
    initx <- .Fortran("init",
-             membr  = as.double(membr),
-             flag   = as.logical(flag),
-             iklass = as.matrix(iklass),
-             n      = as.integer(n),
-             m      = as.integer(m)
-             )
+                     membr  = as.double(membr),
+                     flag   = as.logical(flag),
+                     iklass = as.matrix(iklass),
+                     n      = as.integer(n),
+                     m      = as.integer(m),
+                     PACKAGE = "multiv")
 #
   membr   <- initx$membr
   flag    <- initx$flag
@@ -268,34 +268,34 @@ hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
                                   m      = as.integer(m),
                                   alpha  = as.double(alpha),
                                   a      = as.matrix(a),
-                                  centr  = as.double(centr)
-                                  )
+                                  centr  = as.double(centr),
+                                  PACKAGE = "multiv")
                   }
              else
                  {
 #                 gbd2: Get best dissimilarity (method!=1 case)
                   gbdx <- .Fortran("gbd2",
-                                  membr  = as.double(membr),
-                                  flag   = as.logical(flag),
-                                  dleast = as.double(dleast),
-                                  ileast = as.integer(ileast),
-                                  jleast = as.integer(jleast),
-                                  ncl    = as.integer(ncl),
-                                  ia     = as.integer(ia),
-                                  ib     = as.integer(ib),
-                                  iklass = as.matrix(iklass),
-                                  potcl1 = as.integer(potcl1),
-                                  potcl2 = as.integer(potcl2),
-                                  array1 = as.matrix(array1),
-                                  array2 = as.matrix(array2),
-                                  vect1  = as.double(vect1),
-                                  vect2  = as.double(vect2),
-                                  dat2   = as.double(dat2),
-                                  n      = as.integer(n),
-                                  m      = as.integer(m),
-                                  a      = as.matrix(a),
-                                  method = as.integer(method)
-                                  )
+                                   membr  = as.double(membr),
+                                   flag   = as.logical(flag),
+                                   dleast = as.double(dleast),
+                                   ileast = as.integer(ileast),
+                                   jleast = as.integer(jleast),
+                                   ncl    = as.integer(ncl),
+                                   ia     = as.integer(ia),
+                                   ib     = as.integer(ib),
+                                   iklass = as.matrix(iklass),
+                                   potcl1 = as.integer(potcl1),
+                                   potcl2 = as.integer(potcl2),
+                                   array1 = as.matrix(array1),
+                                   array2 = as.matrix(array2),
+                                   vect1  = as.double(vect1),
+                                   vect2  = as.double(vect2),
+                                   dat2   = as.double(dat2),
+                                   n      = as.integer(n),
+                                   m      = as.integer(m),
+                                   a      = as.matrix(a),
+                                   method = as.integer(method),
+                                   PACKAGE = "multiv")
                  }
 #
        ileast <- gbdx$ileast
@@ -323,20 +323,20 @@ hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
 #
 #      agg: Agglomerate
        aggx <- .Fortran("agg",
-                 ileast = as.integer(ileast),
-                 jleast = as.integer(jleast),
-                 dleast = as.double(dleast),
-                 ncl    = as.integer(ncl),
-                 ia     = as.integer(ia),
-                 ib     = as.integer(ib),
-                 crit   = as.double(crit),
-                 membr  = as.double(membr),
-                 flag   = as.logical(flag),
-                 n      = as.integer(n)
-                 )
-#
-       ileast <- aggx$ileast
-       jleast <- aggx$jleast
+                        ileast = as.integer(ileast),
+                        jleast = as.integer(jleast),
+                        dleast = as.double(dleast),
+                        ncl    = as.integer(ncl),
+                        ia     = as.integer(ia),
+                        ib     = as.integer(ib),
+                        crit   = as.double(crit),
+                        membr  = as.double(membr),
+                        flag   = as.logical(flag),
+                        n      = as.integer(n),
+                        PACKAGE = "multiv")
+                                        #
+             ileast <- aggx$ileast
+             jleast <- aggx$jleast
        dleast <- aggx$dleast
        ia     <- aggx$ia
        ib     <- aggx$ib
@@ -346,17 +346,17 @@ hierclust    <- function(a, method=1, bign=FALSE, diagnostics=FALSE, sim=" ",
 #
 #      gncm: Get new cluster memberships
        gncmx <- .Fortran("gncm",
-                 ileast = as.integer(ileast),
-                 jleast = as.integer(jleast),
-                 ncl    = as.integer(ncl),
-                 ia     = as.integer(ia),
-                 ib     = as.integer(ib),
-                 membr  = as.double(membr),
-                 iklass = as.matrix(iklass),
-                 flag   = as.logical(flag),
-                 n      = as.integer(n)
-                 )
-#
+                         ileast = as.integer(ileast),
+                         jleast = as.integer(jleast),
+                         ncl    = as.integer(ncl),
+                         ia     = as.integer(ia),
+                         ib     = as.integer(ib),
+                         membr  = as.double(membr),
+                         iklass = as.matrix(iklass),
+                         flag   = as.logical(flag),
+                         n      = as.integer(n),
+                         PACKAGE = "multiv")
+                                        #
        ileast <- gncmx$ileast
        jleast <- gncmx$jleast
        ia     <- gncmx$ia

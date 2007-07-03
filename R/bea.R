@@ -23,7 +23,8 @@ bea <- function(a, istart=0, jstart=0)
                        istart = as.integer(istart),  # 1st row placement
                        b = as.matrix(b),             # permuted array
                        ib = as.integer(ib),          # permuted order of rows
-                       ifin = as.integer(ifin))      # for book-keeping
+                       ifin = as.integer(ifin),      # for book-keeping
+                             PACKAGE = "multiv")
 #
            a <- bea1$b
            bea2  <- .Fortran("cbea",
@@ -33,13 +34,15 @@ bea <- function(a, istart=0, jstart=0)
                        jstart = as.integer(jstart),  # 1st col. placement
                        b = as.matrix(b),             # permuted array
                        jb = as.integer(jb),          # permuted order of cols.
-                       jfin = as.integer(jfin))      # for book-keeping
+                       jfin = as.integer(jfin),      # for book-keeping
+                             PACKAGE = "multiv")
 #
            energ  <- .Fortran("energy",
                        n = as.integer(n),
                        m = as.integer(m),
                        b = as.matrix(bea2$b),
-                       ener = as.double(ener))
+                       ener = as.double(ener),
+                              PACKAGE = "multiv")
 #
            list(b = bea2$b, ib = bea1$ib, jb = bea2$jb, e = energ$ener)
 }

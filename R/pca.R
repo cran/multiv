@@ -31,18 +31,19 @@ pca <- function(a, method=3)
         ierr   <- 0        # error indicator
 
         princomp <- .Fortran("pca",
-             n       = as.integer(n),
-             m       = as.integer(m),
-             a       = as.matrix(a),
-             method  = as.integer(method),
-             b       = as.matrix(b),
-             v1      = double(m),
-             v2      = double(m),
-             w1      = double(n),
-             w2      = double(n),
-             z       = as.matrix(z),
-             ierr    = as.integer(ierr))
-
+                             n       = as.integer(n),
+                             m       = as.integer(m),
+                             a       = as.matrix(a),
+                             method  = as.integer(method),
+                             b       = as.matrix(b),
+                             v1      = double(m),
+                             v2      = double(m),
+                             w1      = double(n),
+                             w2      = double(n),
+                             z       = as.matrix(z),
+                             ierr    = as.integer(ierr),
+                             PACKAGE = "multiv")
+        
         if (princomp$ierr > 0) stop("No convergence for eigenvalue: ",ierr)
 
         inhdim  <- min(m, 7)
